@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Nexus Marketplace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="logo">Nexus Marketplace</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('search') }}">Search</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                {% if session.role == 'admin' %}
+                <li><a href="{{ url_for('admin_panel') }}">Admin</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}">Logout ({{ session.username }})</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}" class="back-link">&larr; Back to Dashboard</a>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="product-detail">
+            <div class="product-detail-image">
+                <span class="category-tag-large">{{ product.category }}</span>
+            </div>
+            <div class="product-detail-info">
+                <h1>{{ product.name }}</h1>
+                <p class="product-detail-description">{{ product.description }}</p>
+                <div class="product-detail-meta">
+                    <span class="price-large">${{ "%.2f"|format(product.price) }}</span>
+                    <span class="stock-large">In Stock: {{ product.stock }} units</span>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary btn-large">Add to Cart</button>
+                    <button class="btn btn-secondary btn-large">Add to Wishlist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-reviews">
+            <h2>Customer Reviews</h2>
+            <div class="review-card">
+                <div class="review-header">
+                    <strong>John D.</strong>
+                    <span class="review-date">2 days ago</span>
+                </div>
+                <p>Great product! Highly recommended.</p>
+                <div class="review-rating">★★★★★</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <strong>Sarah M.</strong>
+                    <span class="review-date">1 week ago</span>
+                </div>
+                <p>Good value for money. Fast delivery too!</p>
+                <div class="review-rating">★★★★☆</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nexus Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

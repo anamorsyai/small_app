@@ -1,0 +1,21 @@
+```
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Database files
+*.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Dependencies
+venv/
+.venv/
+node_modules/
+```
