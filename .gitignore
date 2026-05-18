@@ -1,21 +1,34 @@
 ```
-# Compiled Python files
-*.pyc
+# Python
 __pycache__/
-
-# Database files
-*.db
-
-# Logs
-*.log
-
-# Environment files
-.env
-.env.local
-*.env.*
-
-# Dependencies
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
 venv/
 .venv/
-node_modules/
+.ENV
+.env
+.env.*
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+.MF
+tags
+TAGS
+.IDE/
+.DS_Store
+Thumbs.db
 ```
